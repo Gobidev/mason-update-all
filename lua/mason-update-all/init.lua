@@ -5,8 +5,11 @@ local M = {}
 ---@class MasonUpdateAllSettings
 local default_settings = {
     -- Whether a notification should be shown when there are no updates.
-    ---@type boolean
+    ---@type boolean?
     show_no_updates_notification = true,
+    -- Whether a notification should be shown when we're checking for updates.
+    ---@type boolean?
+    show_checking_for_updates_notification = true,
 }
 
 M.current = default_settings
@@ -53,7 +56,9 @@ function M.update_all()
     local running_count = 0 -- Currently running jobs
     local done_launching_jobs = false
 
-    print_message('Fetching updates')
+    if M.current.show_checking_for_updates_notification then
+        print_message('Fetching updates')
+    end
 
     -- Update the registry
     registry.update(function(success, err)
