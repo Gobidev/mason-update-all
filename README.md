@@ -39,6 +39,8 @@ Call the setup function with optional settings overrides. The default values are
 require('mason-update-all').setup({
   -- Whether a notification should be shown when there are no updates.
   show_no_updates_notification = true,
+  -- Whether a notification should be shown while checking for updates.
+  show_checking_for_updates_notification = true,
 })
 ```
 
